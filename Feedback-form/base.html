@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Feedback{% endblock %} </title>
+    <style>
+        body{background: #f5f5f5; font-family: Arial, Helvetica, sans-serif; margin: 0px;}
+        header, footer{background: #333; padding: 10px; color: white;}
+        nav{display: flex; align-items: center; margin-right: 25px;}
+        nav a{margin:0 10px; color: white; text-decoration: none; display: flex; align-items: center; margin-right: 25px;}
+        main{background: white; padding: 20px; margin-top: 20px; border-radius: 5px solid;}
+
+    </style>
+</head>
+<body>
+    <header><nav>
+        <h4 align="center">Feedback form</h4>
+        <a href="/">Feedback</a>
+    </nav></header>
+
+{% with message = get_flashed_messages() %}         <!-- retrive flash message and store it -->
+    {% if message %}                                <!-- check is there any msg -->
+        <ul style="color: green;">
+            {% for msg in message %}
+            <li>{{msg}}</li>                        <!-- print all msg -->
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+
+ {% block content %} {% endblock %}
+
+<footer align="center">{% block footer %}{% endblock %}  @All right reserved.</footer>
+</body>
+</html>
